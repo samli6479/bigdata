@@ -9,3 +9,5 @@ docker start zookeeper
 docker start kafka
 
 docker start cassandra
+
+docker start redis
