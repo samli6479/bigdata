@@ -20,7 +20,7 @@ logger.setLevel(logging.INFO)
 topic = ""
 new_topic = ""
 kafka_broker = ""
-
+kafka_producer = ""
 
 def shutdown_hook(producer):
 	try:
@@ -43,6 +43,14 @@ def prodcess(timeobj, rdd):
 	price_sum = rdd.map(lambda record: float(json.loads(record[1].decode('utf-8'))[0].get('LastTradePrice'))).reduce(lambda a, b: a+b)
 	average = price_sum/num_of_records
 	logger.info('Received %d records from Kafka, average price is %f' % (num_of_records, average))
+
+	# - write back to kafka
+	# {timestamp, average}
+	data = json.dumps({
+		'timestamp': time.time(),
+		'average': average
+		})
+	kafka_producer.send(new_topic, value = data)
 
 
 
