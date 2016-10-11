@@ -4,6 +4,7 @@
 import sys
 import atexit
 import logging
+import json
 
 from kafka import KafkaProducer
 from kafka.errors import kafkaError, kafkaTimeoutError
@@ -35,7 +36,17 @@ def shutdown_hook(producer):
 			logger.warn('Failed to clode kafka connection')
 
 def prodcess(timeobj, rdd):
-	print(rdd)
+	# - calculate the average
+	num_of_records = rdd.count()
+	if num_of_records == 0:
+		return
+	price_sum = rdd.map(lambda record: float(json.loads(record[1].decode('utf-8'))[0].get('LastTradePrice'))).reduce(lambda a, b: a+b)
+	average = price_sum/num_of_records
+	logger.info('Received %d records from Kafka, average price is %f' % (num_of_records, average))
+
+
+
+
 
 if __name__ == "__main__":
 	# kafka broker, topic,new topic and application name
