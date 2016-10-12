@@ -7,7 +7,7 @@ import logging
 import json
 
 from kafka import KafkaProducer
-from kafka.errors import kafkaError, kafkaTimeoutError
+from kafka.errors import KafkaError, KafkaTimeoutError
 from pyspark import SparkContext # how to talk to spark
 from pyspark.streaming import SteamingContext
 from pyspark.streaming.kafka import KafkaUtils
