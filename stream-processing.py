@@ -68,7 +68,7 @@ if __name__ == "__main__":
 	# -setup connection to spark cluster
 	# local[x] -x number of cores
 	sc = SparkContext("local[2]", "StockAveragePrice")
-	# sc.setLogLevel('ERROR')
+	sc.setLogLevel('ERROR')
 	# Streaming(sc,x)  - open in x seconds 
 	ssc = StreamingContext(sc, 5)
 

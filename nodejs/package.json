@@ -4,6 +4,7 @@
   "description": "simple web app to display stock data",
   "dependencies": {
     "express": "^4.14.0",
+    "jquery": "^3.1.1",
     "minimist": "^1.2.0",
     "redis": "^2.6.2",
     "smoothie": "^1.27.0",
