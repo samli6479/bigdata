@@ -5,6 +5,7 @@ import sys
 import atexit
 import logging
 import json
+import time
 
 from kafka import KafkaProducer
 from kafka.errors import KafkaError, KafkaTimeoutError
