@@ -35,7 +35,7 @@ def shutdown_hook(producer):
 		except Exception as e:
 			logger.warn('Failed to clode kafka connection')
 
-def prodcess(timeobj, rdd):
+def process(timeobj, rdd):
 	# - calculate the average
 	num_of_records = rdd.count()
 	if num_of_records == 0:
