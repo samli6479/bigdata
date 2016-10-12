@@ -9,7 +9,7 @@ import json
 from kafka import KafkaProducer
 from kafka.errors import KafkaError, KafkaTimeoutError
 from pyspark import SparkContext # how to talk to spark
-from pyspark.streaming import SteamingContext
+from pyspark.streaming import StreamingContext
 from pyspark.streaming.kafka import KafkaUtils
 
 logger_format = "%(asctime)-15s %(message)s"
